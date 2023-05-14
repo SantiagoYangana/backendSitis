@@ -8,6 +8,8 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -61,5 +63,10 @@ public class UserServiceImpl implements UserService{
     @Override
     public Boolean verifiedUsername(String username) {
         return this.userRepository.existsById(username);
+    }
+
+    @Override
+    public Page<User> paginationUsers(Pageable pageable) {
+        return this.userRepository.findAll(pageable);
     }
 }

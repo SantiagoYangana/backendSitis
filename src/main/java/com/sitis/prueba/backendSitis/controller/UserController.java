@@ -6,6 +6,10 @@ import com.sitis.prueba.backendSitis.model.UserLogin;
 import com.sitis.prueba.backendSitis.service.ProfileService;
 import com.sitis.prueba.backendSitis.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -47,6 +51,15 @@ public class UserController {
     @PostMapping("/verifiedUsername")
     public Boolean verifiedUsername(@RequestBody String username){
         return this.userService.verifiedUsername(username);
+    }
+
+    @GetMapping("/pagination")
+    public ResponseEntity<Page<User>> paginationUser(
+            @RequestParam (defaultValue = "0") int page,
+            @RequestParam (defaultValue = "5") int size
+    ){
+        Page<User> usersByPage=this.userService.paginationUsers(PageRequest.of(page,size));
+        return new ResponseEntity<Page<User>>(usersByPage, HttpStatusCode.valueOf(200));
     }
 
 }
