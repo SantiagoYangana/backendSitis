@@ -1,6 +1,7 @@
 package com.sitis.prueba.backendSitis.controller;
 
 import com.sitis.prueba.backendSitis.model.Profile;
+import com.sitis.prueba.backendSitis.model.Response;
 import com.sitis.prueba.backendSitis.model.User;
 import com.sitis.prueba.backendSitis.model.UserLogin;
 import com.sitis.prueba.backendSitis.service.ProfileService;
@@ -24,7 +25,7 @@ public class UserController {
     private ProfileService profileService;
 
     @PostMapping("/auth")
-    public Boolean autorizarUser(@RequestBody UserLogin userLogin){
+    public Response autorizarUser(@RequestBody UserLogin userLogin){
         return this.userService.userAutorizado(userLogin);
     }
 

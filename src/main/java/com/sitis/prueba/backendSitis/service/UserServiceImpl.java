@@ -1,6 +1,7 @@
 package com.sitis.prueba.backendSitis.service;
 
 import com.sitis.prueba.backendSitis.model.Profile;
+import com.sitis.prueba.backendSitis.model.Response;
 import com.sitis.prueba.backendSitis.model.User;
 import com.sitis.prueba.backendSitis.model.UserLogin;
 import com.sitis.prueba.backendSitis.repository.UserRepository;
@@ -41,13 +42,26 @@ public class UserServiceImpl implements UserService{
 //    }
 
     @Override
-    public Boolean userAutorizado(UserLogin userLogin) {
-        Boolean userRegister = this.userRepository.existsById(userLogin.getUsername());
-        Boolean passwordRegister = this.userRepository.existsById(userLogin.getPassword());
-        if (userRegister && passwordRegister){
-            return true;
+    public Response userAutorizado(UserLogin userLogin) {
+        Response respuesta = new Response();
+        String usernameLogin = userLogin.getUsername();
+        String passwordLogin = userLogin.getPassword();
+        Boolean userRegister = this.userRepository.existsById(usernameLogin);
+        if (userRegister){
+            Optional<User> userOptional;
+            userOptional =this.userRepository.findById(usernameLogin);
+            if(userOptional.get().getPassword().equalsIgnoreCase(passwordLogin)){
+                respuesta.setResponse(userOptional.get().getProfile().getName()+","+userOptional.get().getUsername());
+                respuesta.setStatus("OK");
+                return respuesta;
+            }
+            respuesta.setResponse("");
+            respuesta.setStatus("Error de contraseña");
+            return respuesta;
         }
-        return false;
+        respuesta.setStatus("Error de Autenticacion");
+        respuesta.setResponse("");
+        return respuesta;
     }
 
     @Override

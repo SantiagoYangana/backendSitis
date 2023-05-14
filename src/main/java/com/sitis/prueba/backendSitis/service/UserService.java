@@ -1,5 +1,6 @@
 package com.sitis.prueba.backendSitis.service;
 
+import com.sitis.prueba.backendSitis.model.Response;
 import com.sitis.prueba.backendSitis.model.User;
 import com.sitis.prueba.backendSitis.model.UserLogin;
 import org.springframework.data.domain.Page;
@@ -9,7 +10,7 @@ import java.util.List;
 
 public interface UserService {
     //Autorizar
-    Boolean userAutorizado(UserLogin userLogin);
+    Response userAutorizado(UserLogin userLogin);
 
     Iterable<User> getUsers();
 
