@@ -2,7 +2,6 @@ package com.sitis.prueba.backendSitis.service;
 
 import com.sitis.prueba.backendSitis.model.Profile;
 import com.sitis.prueba.backendSitis.repository.ProfileRepository;
-import com.sitis.prueba.backendSitis.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

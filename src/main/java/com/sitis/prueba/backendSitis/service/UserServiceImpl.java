@@ -1,19 +1,12 @@
 package com.sitis.prueba.backendSitis.service;
-
-import com.sitis.prueba.backendSitis.model.Profile;
 import com.sitis.prueba.backendSitis.model.Response;
 import com.sitis.prueba.backendSitis.model.User;
 import com.sitis.prueba.backendSitis.model.UserLogin;
 import com.sitis.prueba.backendSitis.repository.UserRepository;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 import java.util.Optional;
 
 @Service

@@ -6,8 +6,6 @@ import com.sitis.prueba.backendSitis.model.UserLogin;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.util.List;
-
 public interface UserService {
     //Autorizar
     Response userAutorizado(UserLogin userLogin);
